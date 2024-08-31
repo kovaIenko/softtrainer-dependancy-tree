@@ -1,0 +1,351 @@
+{
+  "skill": {
+    "name": "Giving feedback"
+  },
+  "name": "Сем та його безвідповідальність",
+  "characters": [
+    {
+      "id": 1,
+      "name": "АІ кординатор",
+      "avatar": "https://softtrainer.s3.eu-north-1.amazonaws.com/content/AI-%D0%BA%D0%BE%D0%BE%D1%80%D0%B4%D0%B8%D0%BD%D0%B0%D1%82%D0%BE%D1%80.png"
+    },
+    {
+      "id": 2,
+      "name": "Сем",
+      "avatar": "https://softtrainer.s3.eu-north-1.amazonaws.com/content/Sem.png"
+    },
+    {
+      "id": -1,
+      "name": "User"
+    }
+  ],
+  "hyperparameters": [
+    {
+      "key": "Involvement"
+    }
+  ],
+  "flow": [
+    {
+      "message_id": 1,
+      "previous_message_id": [],
+      "message_type": "Text",
+      "text": "Чудово, ти готовий провести свій перший діалог і навчитись алгоритму якісного зворотного зв'язку. Не бійся імпровізувати, цей алгоритм - лише підказка, основне - це діалог і взаємоповага.",
+      "character_id": 1,
+      "show_predicate": ""
+    },
+    {
+      "message_id": 2,
+      "previous_message_id": [1],
+      "message_type": "Text",
+      "text": "З чого почнемо?",
+      "character_id": 1,
+      "show_predicate": ""
+    },
+    {
+      "message_id": 3,
+      "previous_message_id": [2],
+      "message_type": "SingleChoiceQuestion",
+      "text": "",
+      "character_id": -1,
+      "show_predicate": "",
+      "options": [
+        "Продумаємо цілі ОС, чого хочемо досягти в результаті діалогу.",
+        "Головне - почати, з цілями розберемось у процесі."
+      ],
+      "correct_answer_position": 1
+    },
+    {
+      "message_id": 4,
+      "previous_message_id": [3],
+      "message_type": "Text",
+      "text": "Це хороша стратегія! Що важливо зробити при підготовці до діалогу?",
+      "character_id": 1,
+      "show_predicate": "message whereId \"3\" and message.allCorrect[] and saveChatValue[\"Involvement\", readChatValue[\"Involvement\"] + 1.0]"
+    },
+    {
+      "message_id": 5,
+      "previous_message_id": [3],
+      "message_type": "Text",
+      "text": "Хм. Давай згадаємо підказку тренера, бо Сем важливий гравець для команди. Він пропонував перед тим як давати ОС, продумати декілька моментів.",
+      "character_id": 1,
+      "show_predicate": "message whereId \"3\" and message.allCorrect[].not[] and saveChatValue[\"Involvement\", readChatValue[\"Involvement\"] + 1.0]"
+    },
+    {
+      "message_id": 6,
+      "previous_message_id": [4, 5],
+      "message_type": "Text",
+      "text": "Що саме ми маємо зрозуміти, щоб зворотній зв'язок краще спрацював?",
+      "character_id": 1,
+      "show_predicate": ""
+    },
+    {
+      "message_id": 7,
+      "previous_message_id": [6],
+      "message_type": "MultiChoiceTask",
+      "text": "",
+      "character_id": -1,
+      "show_predicate": "",
+      "options": [
+        "Придумати ціль зворотного зв'язку.",
+        "Зібрати факти й дані, які обґрунтують твій запит до Сема.",
+        "Продумати питання, які треба поставити Сему.",
+        "Розпитати всю команду, що вони думають про Сема."
+      ],
+      "correct_answer_positions": [1, 2, 3]
+    },
+    {
+      "message_id": 8,
+      "previous_message_id": [7],
+      "prompt": "",
+      "message_type": "HintMessage",
+      "character_id": 1,
+      "show_predicate": ""
+    },
+    {
+      "message_id": 9,
+      "previous_message_id": [8],
+      "message_type": "Text",
+      "text": "Точно в ціль! Має спрацювати.",
+      "character_id": 1,
+      "show_predicate": "message whereId \"7\" and message.allCorrect[]"
+    },
+    {
+      "message_id": 10,
+      "previous_message_id": [8],
+      "message_type": "Text",
+      "text": "Думаю основне таки продумати ціль, продумати питання щоб зрозуміти ситуацію Сема, та зібрати факти.",
+      "character_id": 1,
+      "show_predicate": "message whereId \"7\" and message.allCorrect[].not[]"
+    },
+    {
+      "message_id": 11,
+      "previous_message_id": [9, 10],
+      "message_type": "Text",
+      "text": "Як ти бачиш мету діалогу?",
+      "character_id": 1,
+      "show_predicate": ""
+    },
+    {
+      "message_id": 12,
+      "previous_message_id": [11],
+      "message_type": "SingleChoiceQuestion",
+      "text": "",
+      "character_id": -1,
+      "show_predicate": "",
+      "options": [
+        "Сем відновив подачу всіх звітів й участь у кожній командній зустрічі!",
+        "Сем почав сприймати вас як керівника і завжди робив те, що ви просите від нього без дорікань.",
+        "Покращення координації по проєкту. Для цього важливо, щоб Сем був присутнім на щотижневих зустрічах та надсилав звітність у строк."
+      ],
+      "correct_answer_position": 3
+    },
+    {
+      "message_id": 13,
+      "previous_message_id": [12],
+      "message_type": "Text",
+      "text": "Супер! Тепер ти точно знаєш, який результат хочеш отримати. Це зробить діалог у рази продуктивніше. Час починати. Будь уважним кожна наступна відповідь безпосередньо буде впливати на результат та залученість Сема!",
+      "character_id": 1,
+      "show_predicate": "message whereId \"12\" and message.allCorrect[]"
+    },
+    {
+      "message_id": 14,
+      "previous_message_id": [12],
+      "message_type": "Text",
+      "text": "Розумію вашу ціль! Згадуючи підказку тренера я б порадив ще обов'язково додати як це вплине на загальний результат проєкту!",
+      "character_id": 1,
+      "show_predicate": "message whereId \"12\" and message.allCorrect[].not[]"
+    },
+    {
+      "message_id": 15,
+      "previous_message_id": [13, 14],
+      "message_type": "SingleChoiceQuestion",
+      "text": "",
+      "character_id": -1,
+      "show_predicate": "",
+      "options": [
+        "Привіт, Cем! Хочу обговорити декілька організаційних питань стосовно зустрічей, це займе близько 10-15 хв. Можемо зараз?",
+        "Привіт. Треба поговорити. Зайди до мене будь ласка коли зможеш. Це серйозно.",
+        "Привіт! Я помітив/ла, що після звільнення попереднього керівника ти перестав готувати та відправляти щотижневі звіти, а також часто пропускаєш командні зустрічі. Будь ласка, зверни на це увагу."
+      ],
+      "correct_answer_position": 1
+    },
+    {
+      "message_id": 16,
+      "previous_message_id": [15],
+      "message_type": "Text",
+      "text": "Привіт! Прямо зараз не дуже зручно це обговорювати! Маю закінчити одну справу. Давай за 15 хвилин поговоримо?",
+      "character_id": 2,
+      "show_predicate": "message whereId \"15\" and (message.selected[] == [1] or message.selected[] == [3])"
+    },
+    {
+      "message_id": 17,
+      "previous_message_id": [16],
+      "message_type": "SingleChoiceQuestion",
+      "text": "",
+      "character_id": -1,
+      "show_predicate": "",
+      "options": [
+        "Добре, зустрінемось за 15 хв!",
+        "Ні, давай краще прямо зараз бо далі у мене багато роботи!",
+        "Хм. (Показати невдоволення, але нічого не сказати)"
+      ],
+      "correct_answer_position": 1
+    },
+    {
+      "message_id": 18,
+      "previous_message_id": [17],
+      "message_type": "Text",
+      "text": "(повертаємось через 15 хв.)",
+      "character_id": 1,
+      "show_predicate": "message whereId \"17\" and (message.selected[] == [1] or message.selected[] == [3])"
+    },
+    {
+      "message_id": 19,
+      "previous_message_id": [15],
+      "message_type": "Text",
+      "text": "Привіт! Хм, чесно кажучи я трохи стурбований, щось не так?",
+      "character_id": 2,
+      "show_predicate": "message whereId \"15\" and message.selected[] == [2]"
+    },
+    {
+      "message_id": 20,
+      "previous_message_id": [18, 19],
+      "message_type": "SingleChoiceQuestion",
+      "text": "",
+      "character_id": -1,
+      "show_predicate": "",
+      "options": [
+        "Я помітив, що за останній місяць ти регулярно пропускав щотижневі зустрічі і звіти. Був лише на одній за минулий місяць. Вже бачу, що це призводить до розсинхронізації: ми тестуємо по кілька разів одну й ту саму зміну, витрачаючи на це кошти. Для мене важливо зараз відновити зустрічі та звіти, адже це зможе давати всім регулярно розуміння про реальну ситуацію, не повторювати попередні помилки та ефективніше планувати. Що ти думаєш про це?",
+        "Я не задоволений/а, що ти перестав відвідувати командні зустрічі та подавати звіти. З наступного тижня прошу відновити це, адже це впливає на нашу ефективність. Прошу надсилати мені особисто."
+      ],
+      "correct_answer_position": 1
+    },
+    {
+      "message_id": 21,
+      "previous_message_id": [20],
+      "message_type": "Text",
+      "text": "Яку зміну ми тестували кілька разів?",
+      "character_id": 2,
+      "show_predicate": ""
+    },
+    {
+      "message_id": 22,
+      "previous_message_id": [21],
+      "message_type": "SingleChoiceQuestion",
+      "text": "",
+      "character_id": -1,
+      "show_predicate": "",
+      "options": [
+        "Ти навіть не знаєш, яку ми зміну тестували?",
+        "Спитай у Олега, будь ласка.",
+        "Ми змінили розташування кнопки і відправили це в A/B тест учора, хоча на командній зустрічі 2 тижні тому Олег уже казав, що проводив це тестування самостійно й це не принесло бажаний результат."
+      ],
+      "correct_answer_position": 2
+    },
+    {
+      "message_id": 23,
+      "previous_message_id": [22],
+      "message_type": "Text",
+      "text": "Хм, добре, зупинимо цей тест.",
+      "character_id": 2,
+      "show_predicate": ""
+    },
+    {
+      "message_id": 24,
+      "previous_message_id": [23],
+      "message_type": "SingleChoiceQuestion",
+      "text": "",
+      "character_id": -1,
+      "show_predicate": "",
+      "options": [
+        "Дякую, підкажи є якісь причини, чому ти перестав відвідувати зустрічі та подавати звіти?",
+        "Як ти думаєш, чому набагато менше людей почало відвідувати зустрічі і що ми можемо зробити, щоб ситуація стала краще?",
+        "Призупиніть і почніть, будь ласка, ходити на зустрічі, щоб такого більше не траплялось. Дякую."
+      ],
+      "correct_answer_position": 2
+    },
+    {
+      "message_id": 25,
+      "previous_message_id": [24],
+      "message_type": "Text",
+      "text": "Я завжди вважав, що ці зустрічі більше для керівництва, ніж для команди. Після того, як Сергій, наш минулий тім лід, пішов, я подумав, що команда може спілкуватися та вирішувати питання і без цих формальних мітів та щотижневих звітів. Бо це займає декілька годин! А дедлайни горять!",
+      "character_id": 2,
+      "show_predicate": ""
+    },
+    {
+      "message_id": 26,
+      "previous_message_id": [25],
+      "message_type": "Text",
+      "text": "Мені здається, нам не потрібно так багато часу на звіти та зустрічі. У нас в команді відповідальні фахівці, і в 99% випадків ми встигаємо все до дедлайну. Якщо необхідно, я можу особисто уточнити деталі. Я говорив з кількома членами команди, і вони не проти скасувати цей звіт.",
+      "character_id": 2,
+      "show_predicate": ""
+    },
+    {
+      "message_id": 27,
+      "previous_message_id": [26],
+      "message_type": "SingleChoiceQuestion",
+      "text": "",
+      "character_id": -1,
+      "show_predicate": "",
+      "options": [
+        "Це хто хоче скасувати? Я з ними поговорю. Для нас це критично!",
+        "Давай так, для мене як для ного керівника це потрібно! Тому будь ласка не пропускайте.",
+        "Ми можемо розглянути можливості зробити ці зустрічі більш продуктивними та короткими для всіх. Можливо, ти вважаєш, що можна якось поліпшити цей формат? Я буду вдячний за твої ідеї."
+      ],
+      "correct_answer_position": 3
+    },
+    {
+      "message_id": 28,
+      "previous_message_id": [27],
+      "message_type": "Text",
+      "text": "Я насправді не думав, що це має такий вплив і важливо для тебе. Щодо формату, подумав якщо зробімо щотижневі звіти в чаті, щоб ми бачили прогрес один одного, а командні зустрічі проводитемо не в понеділок, адже зазвичай у цей день навалюється багато роботи.",
+      "character_id": 2,
+      "show_predicate": ""
+    },
+    {
+      "message_id": 29,
+      "previous_message_id": [28],
+      "message_type": "SingleChoiceQuestion",
+      "text": "",
+      "character_id": -1,
+      "show_predicate": "",
+      "options": [
+        "Супер, тоді домовимось, що будемо ділитись звітами в окремому загальному чаті щотижня та перенесемо звіт на середу. Я можу чимось допомогти для цього?",
+        "Так, будь ласка. На жаль, надалі за кожен не наданий звіт буде накладатись штраф. Тому сподіваюсь на розуміння."
+      ],
+      "correct_answer_position": 1
+    },
+    {
+      "message_id": 30,
+      "previous_message_id": [29],
+      "message_type": "Text",
+      "text": "Зможеш написати про це в спільному чаті? Це було б круто і показало б команді, що будемо працювати в новому режимі. Дякую, що почув, Сергій ніколи особливо не прислухався до порад, тому іноді важко було працювати)",
+      "character_id": 2,
+      "show_predicate": "message whereId \"29\" and message.allCorrect[]"
+    },
+    {
+      "message_id": 31,
+      "previous_message_id": [29],
+      "message_type": "Text",
+      "text": "Ох, я зрозумів, що для тебе це критично важливо, але думаю це трохи налякає команду, хоча дивись сам.",
+      "character_id": 2,
+      "show_predicate": "message whereId \"29\" and message.allCorrect[].not[]"
+    },
+    {
+      "message_id": 32,
+      "previous_message_id": [30, 31],
+      "message_type": "Text",
+      "text": "Cупер, дякую тобі!",
+      "character_id": -1,
+      "show_predicate": ""
+    },
+    {
+      "message_id": 33,
+      "previous_message_id": [32],
+      "prompt": "",
+      "message_type": "ResultSimulation",
+      "character_id": 1,
+      "show_predicate": ""
+    }
+  ]
+}
