@@ -9,6 +9,14 @@ function App() {
     const [flows, setFlows] = useState([]); // State to store list of flows
     const [selectedFlow, setSelectedFlow] = useState(null); // State for the selected flow data
 
+    useEffect(() => {
+        // Retrieve token from localStorage when the app loads
+        const storedToken = localStorage.getItem('token');
+        if (storedToken) {
+            setToken(storedToken);
+        }
+    }, []);
+
     return (
         <Router>
             <Routes>
@@ -17,7 +25,7 @@ function App() {
 
                 {/* Route for Flow List Screen */}
                 <Route path="/flows" element={
-                    token ? <FlowList token={token} setFlows={setFlows} setSelectedFlow={setSelectedFlow} />
+                    token ? <FlowList token={token} flows={flows} setFlows={setFlows} setSelectedFlow={setSelectedFlow} />
                         : <Navigate to="/login" />
                 } />
 
